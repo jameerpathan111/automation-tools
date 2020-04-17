@@ -2137,10 +2137,10 @@ def product_install(distribution, create_vm=False, certificate_url=None,
 
     if (
         distribution == 'satellite6-cdn' and
-        sat_version not in ('6.3', '6.4', '6.5', '6.6')
+        sat_version not in ('6.3', '6.4', '6.5', '6.6', '6.7')
     ):
         raise ValueError(
-            "Satellite version should be in [6.3, 6.4, 6.5, 6.6]"
+            "Satellite version should be in [6.3, 6.4, 6.5, 6.6, 6.7]"
         )
 
     if selinux_mode is None:
@@ -2247,7 +2247,7 @@ def product_install(distribution, create_vm=False, certificate_url=None,
     installer_options.update({'katello-enable-ostree': 'true'})
 
     # enable async ssh for rex
-    if sat_version not in ('6.3', '6.4', '6.5', '6.6'):
+    if sat_version not in ('6.3', '6.4', '6.5', '6.6', '6.7'):
         installer_options.update({'foreman-proxy-plugin-remote-execution-ssh-async-ssh': 'true'})
 
     # BZ #1772851 Puppet classes are missing after adding a puppet module and CV publishing
@@ -2256,7 +2256,7 @@ def product_install(distribution, create_vm=False, certificate_url=None,
             'foreman-proxy-plugin-pulp-puppet-content-dir': '/etc/puppetlabs/code/environments'})
 
     # enable cockpit feature
-    if (sat_version not in ('6.3', '6.4', '6.5', '6.6')):
+    if sat_version not in ('6.3', '6.4', '6.5', '6.6', '6.7'):
         installer_options.update({'enable-foreman-plugin-remote-execution-cockpit': 'true'})
 
     if os.environ.get('PROXY_INFO'):
